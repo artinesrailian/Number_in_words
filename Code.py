@@ -31,13 +31,24 @@ def spell_three_digits(number):
         mod = number % 100
         if mod != 0:
             if mod < 10:
-                return spell_single_digit(div) + " հարյուր " +  \
-                   spell_single_digit(mod)
+                if mod == 1:
+                    return "հարյուր " +  \
+                       spell_single_digit(mod)
+                else:
+                    return spell_single_digit(div) + " հարյուր " +  \
+                       spell_single_digit(mod)
             elif mod < 100:
-                return spell_single_digit(div) + " հարյուր " + \
-                   spell_two_digits(mod)
+                if mod == 1:
+                    return "հարյուր " + \
+                       spell_two_digits(mod)
+                else:
+                    return spell_single_digit(div) + " հարյուր " + \
+                       spell_two_digits(mod)
         else:
-            return spell_single_digit(div) + " հարյուր"
+            if mod == 0:
+                return "հարյուր"
+            else:
+                return spell_single_digit(div) + " հարյուր"
 
 def spell(number):
     if 0 <= number < 1000000000000:
@@ -58,10 +69,7 @@ def spell(number):
                     else:
                         a = c + " հազար " + a
                 elif loop == 2:
-                    if mod == 1:
-                        a = "միլիոն " + a
-                    else:
-                        a = c + " միլիոն " + a
+                    a = c + " միլիոն " + a
                 elif loop == 3:
                     a = c + " միլիարդ " + a
             number = number // 1000
@@ -77,5 +85,4 @@ def spell(number):
 def main():
     number = eval(input("Մուտքագրեք դրական թիվ: "))
     spell(number)
-
 main()
