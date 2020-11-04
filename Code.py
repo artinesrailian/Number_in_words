@@ -31,14 +31,14 @@ def spell_three_digits(number):
         mod = number % 100
         if mod != 0:
             if mod < 10:
-                if mod == 1:
+                if div == 1:
                     return "հարյուր " +  \
                        spell_single_digit(mod)
                 else:
                     return spell_single_digit(div) + " հարյուր " +  \
                        spell_single_digit(mod)
             elif mod < 100:
-                if mod == 1:
+                if div == 1:
                     return "հարյուր " + \
                        spell_two_digits(mod)
                 else:
