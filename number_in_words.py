@@ -2,87 +2,87 @@ single_digit = {0: 'զրո', 1: 'մեկ', 2: 'երկու', 3: 'երեք', 4: 'չ
                 5: 'հինգ', 6: 'վեց', 7: 'յոթ', 8: 'ութ',
                 9: 'ինը'}
 
-Teen = {10: 'տաս', 11: 'տասնմեկ', 12: 'տասներկու', 13: 'տասներեք',
+teen = {10: 'տաս', 11: 'տասնմեկ', 12: 'տասներկու', 13: 'տասներեք',
         14: 'տասնչորս', 15: 'տասնհինգ', 16: 'տասնվեց',
         17: 'տասնյոթ', 18: 'տասնութ', 19: 'տասնինը'}
 
-Tens = {20: 'քսան', 30: 'երեսուն', 40: 'քառասուն', 50: 'հիսուն', 60: 'վաթսուն',
+tens = {20: 'քսան', 30: 'երեսուն', 40: 'քառասուն', 50: 'հիսուն', 60: 'վաթսուն',
         70: 'յոթանասուն', 80: 'ութսուն', 90: 'իննսուն'}
 
-def spell_single_digit(Digit):
-    if 0 <= Digit < 10:
-        return single_digit[Digit]
+def spell_single_digit(digit):
+    if 0 <= digit < 10:
+        return single_digit[digit]
 
 def spell_double_digit(number):
     if 10 <= number < 20:
-        return Teen[number]
+        return teen[number]
 
     if 20 <= number < 100:
-        Div = (number // 10) * 10
-        Mod = number % 10
-        if Mod != 0:
-            return Tens[Div] + spell_single_digit(Mod)
+        div = (number // 10) * 10
+        mod = number % 10
+        if mod != 0:
+            return tens[div] + spell_single_digit(mod)
         else:
-            return Tens[number]
+            return tens[number]
 
 def spell_three_digits(number):
     if 100 <= number < 1000:
-        Div = number // 100
-        Mod = number % 100
-        if Mod != 0:
-            if Mod < 10:
-                if Div == 1:
+        div = number // 100
+        mod = number % 100
+        if mod != 0:
+            if mod < 10:
+                if div == 1:
                     return "հարյուր " +  \
-                       spell_single_digit(Mod)
+                       spell_single_digit(mod)
                 else:
-                    return spell_single_digit(Div) + " հարյուր " +  \
-                       spell_single_digit(Mod)
-            elif Mod < 100:
-                if Div == 1:
+                    return spell_single_digit(div) + " հարյուր " +  \
+                       spell_single_digit(mod)
+            elif mod < 100:
+                if div == 1:
                     return "հարյուր " + \
-                       spell_double_digit(Mod)
+                       spell_double_digit(mod)
                 else:
-                    return spell_single_digit(Div) + " հարյուր " + \
-                       spell_double_digit(Mod)
+                    return spell_single_digit(div) + " հարյուր " + \
+                       spell_double_digit(mod)
         else:
-            if Mod == 0:
+            if mod == 0:
                 return "հարյուր"
             else:
-                return spell_single_digit(Div) + " հարյուր"
+                return spell_single_digit(div) + " հարյուր"
 
-def Spell(number):
+def spell(number):
     if 0 <= number < 1000000000000:
         if number == 0:
             print (spell_single_digit(number))
         a = ""
-        Loop = 0
+        loop = 0
         while number:
-            Mod = number % 1000
-            if Mod != 0:
-                c = spell_three_digits(Mod) or spell_double_digit(Mod) \
-                    or spell_single_digit(Mod)
-                if Loop == 0:
+            mod = number % 1000
+            if mod != 0:
+                c = spell_three_digits(mod) or spell_double_digit(mod) \
+                    or spell_single_digit(mod)
+                if loop == 0:
                     a = c + " " + a
-                elif Loop == 1:
-                    if Mod == 1:
+                elif loop == 1:
+                    if mod == 1:
                         a = "հազար " + a
                     else:
                         a = c + " հազար " + a
-                elif Loop == 2:
+                elif loop == 2:
                     a = c + " միլիոն " + a
-                elif Loop == 3:
+                elif loop == 3:
                     a = c + " միլիարդ " + a
             number = number // 1000
-            Loop += 1
+            loop += 1
         print (a)
     elif number < 0:
         number = eval(input("Մուտքագրեք դրական թիվ: "))
-        Spell(number)
+        spell(number)
     else:
         number = eval(input("Մուտքագրեք տրիլիոնից փոքր թիվ: "))
-        Spell(number)
+        spell(number)
 
 def main():
     number = eval(input("Մուտքագրեք դրական թիվ: "))
-    Spell(number)
+    spell(number)
 main()
