@@ -13,22 +13,22 @@ def spell_single_digit(Digit):
     if 0 <= Digit < 10:
         return single_digit[Digit]
 
-def spell_double_digit(Number):
-    if 10 <= Number < 20:
-        return Teen[Number]
+def spell_double_digit(number):
+    if 10 <= number < 20:
+        return Teen[number]
 
-    if 20 <= Number < 100:
-        Div = (Number // 10) * 10
-        Mod = Number % 10
+    if 20 <= number < 100:
+        Div = (number // 10) * 10
+        Mod = number % 10
         if Mod != 0:
             return Tens[Div] + spell_single_digit(Mod)
         else:
-            return Tens[Number]
+            return Tens[number]
 
-def spell_three_digits(Number):
-    if 100 <= Number < 1000:
-        Div = Number // 100
-        Mod = Number % 100
+def spell_three_digits(number):
+    if 100 <= number < 1000:
+        Div = number // 100
+        Mod = number % 100
         if Mod != 0:
             if Mod < 10:
                 if Div == 1:
@@ -50,14 +50,14 @@ def spell_three_digits(Number):
             else:
                 return spell_single_digit(Div) + " հարյուր"
 
-def Spell(Number):
-    if 0 <= Number < 1000000000000:
-        if Number == 0:
-            print (spell_single_digit(Number))
+def Spell(number):
+    if 0 <= number < 1000000000000:
+        if number == 0:
+            print (spell_single_digit(number))
         a = ""
         Loop = 0
-        while Number:
-            Mod = Number % 1000
+        while number:
+            Mod = number % 1000
             if Mod != 0:
                 c = spell_three_digits(Mod) or spell_double_digit(Mod) \
                     or spell_single_digit(Mod)
@@ -72,17 +72,17 @@ def Spell(Number):
                     a = c + " միլիոն " + a
                 elif Loop == 3:
                     a = c + " միլիարդ " + a
-            Number = Number // 1000
+            number = number // 1000
             Loop += 1
         print (a)
-    elif Number < 0:
-        Number = eval(input("Մուտքագրեք դրական թիվ: "))
-        Spell(Number)
+    elif number < 0:
+        number = eval(input("Մուտքագրեք դրական թիվ: "))
+        Spell(number)
     else:
-        Number = eval(input("Մուտքագրեք տրիլիոնից փոքր թիվ: "))
-        Spell(Number)
+        number = eval(input("Մուտքագրեք տրիլիոնից փոքր թիվ: "))
+        Spell(number)
 
 def main():
-    Number = eval(input("Մուտքագրեք դրական թիվ: "))
-    Spell(Number)
+    number = eval(input("Մուտքագրեք դրական թիվ: "))
+    Spell(number)
 main()
