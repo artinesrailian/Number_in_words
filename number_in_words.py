@@ -1,4 +1,4 @@
-SingleDigit = {0: 'զրո', 1: 'մեկ', 2: 'երկու', 3: 'երեք', 4: 'չորս',
+single_digit = {0: 'զրո', 1: 'մեկ', 2: 'երկու', 3: 'երեք', 4: 'չորս',
                 5: 'հինգ', 6: 'վեց', 7: 'յոթ', 8: 'ութ',
                 9: 'ինը'}
 
@@ -11,9 +11,9 @@ Tens = {20: 'քսան', 30: 'երեսուն', 40: 'քառասուն', 50: 'հի�
 
 def spell_single_digit(Digit):
     if 0 <= Digit < 10:
-        return SingleDigit[Digit]
+        return single_digit[Digit]
 
-def SpellTwoDigits(Number):
+def spell_double_digit(Number):
     if 10 <= Number < 20:
         return Teen[Number]
 
@@ -40,10 +40,10 @@ def spell_three_digits(Number):
             elif Mod < 100:
                 if Div == 1:
                     return "հարյուր " + \
-                       SpellTwoDigits(Mod)
+                       spell_double_digit(Mod)
                 else:
                     return spell_single_digit(Div) + " հարյուր " + \
-                       SpellTwoDigits(Mod)
+                       spell_double_digit(Mod)
         else:
             if Mod == 0:
                 return "հարյուր"
@@ -59,7 +59,7 @@ def Spell(Number):
         while Number:
             Mod = Number % 1000
             if Mod != 0:
-                c = spell_three_digits(Mod) or SpellTwoDigits(Mod) \
+                c = spell_three_digits(Mod) or spell_double_digit(Mod) \
                     or spell_single_digit(Mod)
                 if Loop == 0:
                     a = c + " " + a
