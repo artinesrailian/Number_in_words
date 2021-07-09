@@ -9,7 +9,7 @@ Teen = {10: 'տաս', 11: 'տասնմեկ', 12: 'տասներկու', 13: 'տա�
 Tens = {20: 'քսան', 30: 'երեսուն', 40: 'քառասուն', 50: 'հիսուն', 60: 'վաթսուն',
         70: 'յոթանասուն', 80: 'ութսուն', 90: 'իննսուն'}
 
-def SpellSingleDigit(Digit):
+def spell_single_digit(Digit):
     if 0 <= Digit < 10:
         return SingleDigit[Digit]
 
@@ -21,11 +21,11 @@ def SpellTwoDigits(Number):
         Div = (Number // 10) * 10
         Mod = Number % 10
         if Mod != 0:
-            return Tens[Div] + SpellSingleDigit(Mod)
+            return Tens[Div] + spell_single_digit(Mod)
         else:
             return Tens[Number]
 
-def SpellThreeDigits(Number):
+def spell_three_digits(Number):
     if 100 <= Number < 1000:
         Div = Number // 100
         Mod = Number % 100
@@ -33,34 +33,34 @@ def SpellThreeDigits(Number):
             if Mod < 10:
                 if Div == 1:
                     return "հարյուր " +  \
-                       SpellSingleDigit(Mod)
+                       spell_single_digit(Mod)
                 else:
-                    return SpellSingleDigit(Div) + " հարյուր " +  \
-                       SpellSingleDigit(Mod)
+                    return spell_single_digit(Div) + " հարյուր " +  \
+                       spell_single_digit(Mod)
             elif Mod < 100:
                 if Div == 1:
                     return "հարյուր " + \
                        SpellTwoDigits(Mod)
                 else:
-                    return SpellSingleDigit(Div) + " հարյուր " + \
+                    return spell_single_digit(Div) + " հարյուր " + \
                        SpellTwoDigits(Mod)
         else:
             if Mod == 0:
                 return "հարյուր"
             else:
-                return SpellSingleDigit(Div) + " հարյուր"
+                return spell_single_digit(Div) + " հարյուր"
 
 def Spell(Number):
     if 0 <= Number < 1000000000000:
         if Number == 0:
-            print (SpellSingleDigit(Number))
+            print (spell_single_digit(Number))
         a = ""
         Loop = 0
         while Number:
             Mod = Number % 1000
             if Mod != 0:
-                c = SpellThreeDigits(Mod) or SpellTwoDigits(Mod) \
-                    or SpellSingleDigit(Mod)
+                c = spell_three_digits(Mod) or SpellTwoDigits(Mod) \
+                    or spell_single_digit(Mod)
                 if Loop == 0:
                     a = c + " " + a
                 elif Loop == 1:
