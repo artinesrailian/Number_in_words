@@ -1,3 +1,4 @@
+import ast
 single_digit = {0: 'զրո', 1: 'մեկ', 2: 'երկու', 3: 'երեք', 4: 'չորս',
                 5: 'հինգ', 6: 'վեց', 7: 'յոթ', 8: 'ութ',
                 9: 'ինը'}
@@ -53,7 +54,7 @@ def spell_three_digits(number):
 def spell(number):
     if 0 <= number < 1000000000000:
         if number == 0:
-            print (spell_single_digit(number))
+            print(spell_single_digit(number))
         result = ""
         loop = 0
         while number:
@@ -76,13 +77,13 @@ def spell(number):
             loop += 1
         print(result)
     elif number < 0:
-        number = eval(input("Մուտքագրեք դրական թիվ: "))
+        number = ast.literal_eval(input("Մուտքագրեք դրական թիվ: "))
         spell(number)
     else:
-        number = eval(input("Մուտքագրեք տրիլիոնից փոքր թիվ: "))
+        number = ast.literal_eval(input("Մուտքագրեք տրիլիոնից փոքր թիվ: "))
         spell(number)
 
 def main():
-    number = eval(input("Մուտքագրեք դրական թիվ: "))
+    number = ast.literal_eval(input("Մուտքագրեք դրական թիվ: "))
     spell(number)
 main()
