@@ -17,6 +17,8 @@ def spell_single_digit(digit):
 def spell_double_digit(number):
     if 10 <= number < 20:
         return teen[number]
+    else:
+        pass
 
     if 20 <= number < 100:
         div = (number // 10) * 10
@@ -87,3 +89,8 @@ def main():
     number = ast.literal_eval(input("Մուտքագրեք դրական թիվ: "))
     spell(number)
 main()
+
+def sum_two_terms(term1, term2):
+   return term1 + term2
+
+print("2 + 2 = {0}".format(sum_two_terms(2, 2)))
