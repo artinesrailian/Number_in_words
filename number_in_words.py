@@ -17,6 +17,8 @@ def spell_single_digit(digit):
 def spell_double_digit(number):
     if 10 <= number < 20:
         return teen[number]
+    else:
+        pass
 
     if 20 <= number < 100:
         div = (number // 10) * 10
