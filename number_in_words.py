@@ -54,27 +54,27 @@ def spell(number):
     if 0 <= number < 1000000000000:
         if number == 0:
             print (spell_single_digit(number))
-        a = ""
+        result = ""
         loop = 0
         while number:
             mod = number % 1000
             if mod != 0:
-                c = spell_three_digits(mod) or spell_double_digit(mod) \
+                count = spell_three_digits(mod) or spell_double_digit(mod) \
                     or spell_single_digit(mod)
                 if loop == 0:
-                    a = c + " " + a
+                    result = count + " " + result
                 elif loop == 1:
                     if mod == 1:
-                        a = "հազար " + a
+                        result = "հազար " + result
                     else:
-                        a = c + " հազար " + a
+                        result = count + " հազար " + result
                 elif loop == 2:
-                    a = c + " միլիոն " + a
+                    result = count + " միլիոն " + result
                 elif loop == 3:
-                    a = c + " միլիարդ " + a
+                    result = count + " միլիարդ " + result
             number = number // 1000
             loop += 1
-        print (a)
+        print(result)
     elif number < 0:
         number = eval(input("Մուտքագրեք դրական թիվ: "))
         spell(number)
